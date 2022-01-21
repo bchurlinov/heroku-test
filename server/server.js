@@ -7,12 +7,12 @@ const PORT = process.env.PORT || 5000;
 
 // Custom Middleware
 app.use((req, res, next) => {
-  let validIps = ["::1", "::ffff:10.1.14.214"];
+  let validIps = ["::1", "62.162.180.176"];
 
   var clientIp = requestIp.getClientIp(req);
   console.log("CLIENT IP >>", clientIp);
 
-  if (!validIps.includes(clientIp)) {
+  if (validIps.includes(clientIp)) {
     // IP is ok, so go on
     next();
   } else {
