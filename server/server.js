@@ -1,7 +1,6 @@
 const path = require("path");
 const AccessControl = require("express-ip-access-control");
 const express = require("express");
-const app = express();
 
 const options = {
   mode: "deny",
@@ -20,11 +19,13 @@ const options = {
 // Create middleware.
 const middleware = AccessControl(options);
 
+const app = express();
+app.use(AccessControl(options));
+
 const PORT = process.env.PORT || 5000;
 
 const buildPath = path.join(__dirname, "..", "build");
 app.use(express.static(buildPath));
-app.use(AccessControl(options));
 
 app.get("/api/jobs", async (req, res) => {
   try {
