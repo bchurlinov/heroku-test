@@ -5,7 +5,6 @@ import './App.css';
 const App = (): JSX.Element => (
   <div className="App">
     <header className="App-header">
-
       <p>
         Edit
         <code>src/App.tsx</code>
@@ -14,7 +13,6 @@ const App = (): JSX.Element => (
       <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
         Learn React
       </a>
-      <Button />
     </header>
   </div>
 );
