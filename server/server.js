@@ -10,14 +10,14 @@ app.use((req, res, next) => {
 
   console.log("remote >>", req.socket.remoteAddress);
 
-  if (validIps.includes(req.connection.remoteAddress)) {
+  if (validIps.includes(req.socket.remoteAddress)) {
     // IP is ok, so go on
     console.log("IP ok");
     next();
   } else {
     // Invalid ip
-    console.log("Bad IP: " + req.connection.remoteAddress);
-    const err = new Error("Bad IP: " + req.connection.remoteAddress);
+    console.log("Bad IP: " + req.socket.remoteAddress);
+    const err = new Error("Bad IP: " + req.socket.remoteAddress);
     next(err);
   }
 });
