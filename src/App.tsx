@@ -5,7 +5,7 @@ const App = (): JSX.Element => (
   <div className="App">
     <header className="App-header">
       <h1>
-        This is Development
+        This is React in Development Mode
       </h1>
     </header>
   </div>
