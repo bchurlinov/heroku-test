@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require("express");
+const requestIp = require("request-ip");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -8,15 +9,14 @@ const PORT = process.env.PORT || 5000;
 app.use((req, res, next) => {
   let validIps = ["::1", "::ffff:10.1.14.214"];
 
-  console.log("remote IP address >>", req.socket.remoteAddress);
+  var clientIp = requestIp.getClientIp(req);
+  console.log("CLIENT IP >>", clientIp);
 
-  if (validIps.includes(req.socket.remoteAddress)) {
+  if (!validIps.includes(clientIp)) {
     // IP is ok, so go on
-    console.log("IP ok");
     next();
   } else {
     // Invalid ip
-    console.log("Bad IP: " + req.socket.remoteAddress);
     const err = new Error("Bad IP: " + req.socket.remoteAddress);
     next(err);
   }
@@ -45,7 +45,7 @@ app.get("/api/jobs", async (req, res) => {
 app.use((err, req, res, next) => {
   console.log("Error handler", err);
   res.status(err.status || 500);
-  res.send("Something broke");
+  res.send("You are not allowed to visit this web app");
 });
 
 app.listen(PORT, () => {
