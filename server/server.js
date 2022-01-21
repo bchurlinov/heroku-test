@@ -1,28 +1,16 @@
 const path = require("path");
-const AccessControl = require("express-ip-access-control");
 const express = require("express");
+const ipfilter = require("express-ipfilter").IpFilter;
 
-const options = {
-  mode: "deny",
-  denys: [],
-  allows: ["62.162.180.176"],
-  forceConnectionAddress: false,
-  log: function (clientIp, access) {
-    console.log(clientIp + (access ? " accessed." : " denied."));
-  },
-
-  statusCode: 401,
-  redirectTo: "",
-  message: "Unauthorized",
-};
+// Allow the following IPs
+const ips = ["62.162.180.176", "127.0.0.1"];
 
 // Create middleware.
-const middleware = AccessControl(options);
 
 const app = express();
-app.use(AccessControl(options));
-
 const PORT = process.env.PORT || 5000;
+
+app.use(ipfilter(ips, { mode: "allow" }));
 
 const buildPath = path.join(__dirname, "..", "build");
 app.use(express.static(buildPath));
