@@ -6,9 +6,9 @@ const PORT = process.env.PORT || 5000;
 
 // Custom Middleware
 app.use((req, res, next) => {
-  let validIps = ["::1", "127.0.0.1", "62.162.180.176"];
+  let validIps = ["::1", "::ffff:10.1.14.214"];
 
-  console.log("remote >>", req.socket.remoteAddress);
+  console.log("remote IP address >>", req.socket.remoteAddress);
 
   if (validIps.includes(req.socket.remoteAddress)) {
     // IP is ok, so go on
