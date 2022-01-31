@@ -5,7 +5,7 @@ const App = (): JSX.Element => (
   <div className="App">
     <header className="App-header">
       <h1>
-        This is React in Production Mode
+        This is an App in Production Mode
       </h1>
     </header>
   </div>
