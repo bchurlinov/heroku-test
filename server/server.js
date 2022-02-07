@@ -34,8 +34,8 @@ app.use(function (req, res) {
   res.end("Hello, your ip address is " + ip + " and is of type IPv" + ipType + "\n");
 });
 
-// const buildPath = path.join(__dirname, "..", "build");
-// app.use(express.static(buildPath));
+const buildPath = path.join(__dirname, "..", "build");
+app.use(express.static(buildPath));
 
 app.use((err, req, res, next) => {
   console.log("Error handler", err);
