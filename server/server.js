@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 
 // Custom Middleware
 app.use((req, res, next) => {
-  let validIps = ["::1", "62.162.180.176", "89.205.124.197"];
+  let validIps = ["62.162.180.176", "89.205.124.197"];
 
   var clientIp = requestIp.getClientIp(req);
   console.log("CLIENT IP >>", clientIp);
